@@ -83,3 +83,101 @@
             transition: 0.3s;
             display: inline-block;
         }
+
+        .btn-primary:hover {
+            background-color: #009684;
+            transform: scale(1.05);
+        }
+
+        /* 3D Try-On Section */
+        .try-on-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 50px;
+            background-color: #ffffff;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+
+        .try-on-text {
+            max-width: 500px;
+        }
+
+        .try-on-text h2 {
+            font-size: 36px;
+            color: #000042;
+            margin-bottom: 20px;
+        }
+
+        .try-on-text p {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .ar-graphic {
+            font-size: 120px;
+            background: #f0fdfa;
+            padding: 40px;
+            border-radius: 50%;
+            box-shadow: 0 10px 20px rgba(0, 188, 165, 0.2);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Simple animation for the glasses */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Footer */
+        footer {
+            background-color: #000042;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <a href="#" class="logo">Lenskart<span>.</span></a>
+        <nav>
+            <a href="#">Eyeglasses</a>
+            <a href="#">Sunglasses</a>
+            <a href="#">Contact Lenses</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section with Book Home Eye Test -->
+    <section class="hero">
+        <h1>See The World Clearly, From Your Couch</h1>
+        <p>Get your eyes checked by certified professionals in the comfort of your own home.</p>
+        <a href="#" class="btn-primary">🛵 Book Home Eye Test</a>
+    </section>
+
+    <!-- 3D Try-On Section -->
+    <section class="try-on-section">
+        <div class="ar-graphic">
+            🕶️
+        </div>
+        <div class="try-on-text">
+            <h2>Experience Virtual 3D Try-On</h2>
+            <p>Not sure how a frame will look on your face? Use our advanced AI-powered 3D Try-On feature right from your smartphone or laptop. Try thousands of frames instantly and find your perfect fit without stepping outside.</p>
+            <a href="#" class="btn-primary">📱 Start 3D Try-On</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Lenskart Prototype - Built for KPI Audit Assessment</p>
+    </footer>
+
+</body>
+</html>
