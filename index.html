@@ -8,144 +8,38 @@
         /* CSS STYLES */
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background-color: #f8f9fa; color: #333; }
+        header { background-color: #ffffff; padding: 20px 50px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 6px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100; }
+        .logo { font-size: 28px; font-weight: 700; color: #000042; text-decoration: none; }
+        .logo span { color: #00bca5; }
+        nav a { text-decoration: none; color: #333; margin-left: 20px; font-weight: 600; }
+        .hero { background: linear-gradient(135deg, #000042, #001f5c); color: white; text-align: center; padding: 100px 20px; }
+        .hero h1 { font-size: 48px; margin-bottom: 20px; }
+        .hero p { font-size: 18px; margin-bottom: 40px; color: #d1d5db; }
+        
+        /* Updated Buttons */
+        .btn-primary { background-color: #00bca5; color: white; padding: 15px 30px; border-radius: 30px; font-size: 18px; font-weight: 600; text-decoration: none; border: none; cursor: pointer; transition: 0.3s; display: inline-block; }
+        .btn-primary:hover { background-color: #009684; transform: scale(1.05); }
+        
+        .try-on-section { display: flex; align-items: center; justify-content: center; padding: 80px 50px; background-color: #ffffff; gap: 50px; flex-wrap: wrap; }
+        .try-on-text { max-width: 500px; }
+        .try-on-text h2 { font-size: 36px; color: #000042; margin-bottom: 20px; }
+        .try-on-text p { font-size: 16px; color: #666; margin-bottom: 30px; line-height: 1.6; }
+        .ar-graphic { font-size: 120px; background: #f0fdfa; padding: 40px; border-radius: 50%; box-shadow: 0 10px 20px rgba(0, 188, 165, 0.2); animation: float 3s ease-in-out infinite; transition: 0.3s; }
+        
+        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-15px); } 100% { transform: translateY(0px); } }
+        footer { background-color: #000042; color: white; text-align: center; padding: 20px; margin-top: 40px; }
 
-        body {
-            background-color: #f8f9fa;
-            color: #333;
-        }
-
-        /* Header / Navbar */
-        header {
-            background-color: #ffffff;
-            padding: 20px 50px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .logo {
-            font-size: 28px;
-            font-weight: 700;
-            color: #000042; /* Lenskart Navy */
-            text-decoration: none;
-        }
-
-        .logo span {
-            color: #00bca5; /* Lenskart Teal */
-        }
-
-        nav a {
-            text-decoration: none;
-            color: #333;
-            margin-left: 20px;
-            font-weight: 600;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #000042, #001f5c);
-            color: white;
-            text-align: center;
-            padding: 100px 20px;
-        }
-
-        .hero h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
-        }
-
-        .hero p {
-            font-size: 18px;
-            margin-bottom: 40px;
-            color: #d1d5db;
-        }
-
-        .btn-primary {
-            background-color: #00bca5;
-            color: white;
-            padding: 15px 30px;
-            border-radius: 30px;
-            font-size: 18px;
-            font-weight: 600;
-            text-decoration: none;
-            border: none;
-            cursor: pointer;
-            transition: 0.3s;
-            display: inline-block;
-        }
-
-        .btn-primary:hover {
-            background-color: #009684;
-            transform: scale(1.05);
-        }
-
-        /* 3D Try-On Section */
-        .try-on-section {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 80px 50px;
-            background-color: #ffffff;
-            gap: 50px;
-            flex-wrap: wrap;
-        }
-
-        .try-on-text {
-            max-width: 500px;
-        }
-
-        .try-on-text h2 {
-            font-size: 36px;
-            color: #000042;
-            margin-bottom: 20px;
-        }
-
-        .try-on-text p {
-            font-size: 16px;
-            color: #666;
-            margin-bottom: 30px;
-            line-height: 1.6;
-        }
-
-        .ar-graphic {
-            font-size: 120px;
-            background: #f0fdfa;
-            padding: 40px;
-            border-radius: 50%;
-            box-shadow: 0 10px 20px rgba(0, 188, 165, 0.2);
-            animation: float 3s ease-in-out infinite;
-        }
-
-        /* Simple animation for the glasses */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0px); }
-        }
-
-        /* Footer */
-        footer {
-            background-color: #000042;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            margin-top: 40px;
-        }
+        /* Toast Notification Style (The Pop-up) */
+        #toast { visibility: hidden; min-width: 300px; background-color: #00bca5; color: #fff; text-align: center; border-radius: 8px; padding: 16px; position: fixed; z-index: 1000; bottom: 30px; left: 50%; transform: translateX(-50%); box-shadow: 0 4px 15px rgba(0,0,0,0.2); font-weight: 600; font-size: 16px;}
+        #toast.show { visibility: visible; animation: fadein 0.5s, fadeout 0.5s 2.5s; }
+        @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
+        @keyframes fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
     </style>
 </head>
 <body>
 
-    <!-- Header Section -->
     <header>
         <a href="#" class="logo">Lenskart<span>.</span></a>
         <nav>
@@ -155,29 +49,51 @@
         </nav>
     </header>
 
-    <!-- Hero Section with Book Home Eye Test -->
     <section class="hero">
         <h1>See The World Clearly, From Your Couch</h1>
         <p>Get your eyes checked by certified professionals in the comfort of your own home.</p>
-        <a href="#" class="btn-primary">🛵 Book Home Eye Test</a>
+        <!-- Button triggers JS function -->
+        <button onclick="bookTest()" class="btn-primary">🛵 Book Home Eye Test</button>
     </section>
 
-    <!-- 3D Try-On Section -->
     <section class="try-on-section">
-        <div class="ar-graphic">
-            🕶️
-        </div>
+        <div id="ar-glasses" class="ar-graphic">🕶️</div>
         <div class="try-on-text">
             <h2>Experience Virtual 3D Try-On</h2>
             <p>Not sure how a frame will look on your face? Use our advanced AI-powered 3D Try-On feature right from your smartphone or laptop. Try thousands of frames instantly and find your perfect fit without stepping outside.</p>
-            <a href="#" class="btn-primary">📱 Start 3D Try-On</a>
+            <!-- Button triggers JS function -->
+            <button onclick="startAR()" class="btn-primary">📱 Start 3D Try-On</button>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <p>&copy; 2026 Lenskart Prototype - Built for KPI Audit Assessment</p>
     </footer>
+
+    <!-- The invisible box that JS turns into a pop-up -->
+    <div id="toast">Message goes here</div>
+
+    <!-- JAVASCRIPT SECTION (Where the magic happens) -->
+    <script>
+        // Function to make the pop-up appear and disappear
+        function showToast(message) {
+            var toast = document.getElementById("toast");
+            toast.innerText = message;
+            toast.className = "show";
+            setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 3000);
+        }
+
+        // What happens when you click Book Eye Test
+        function bookTest() {
+            showToast("✅ Request Received! Optometrist assigned and will contact you shortly.");
+        }
+
+        // What happens when you click 3D Try-On
+        function startAR() {
+            document.getElementById("ar-glasses").innerText = "😎";
+            showToast("📷 Requesting camera access for Virtual Try-On...");
+        }
+    </script>
 
 </body>
 </html>
