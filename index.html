@@ -3,97 +3,263 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lenskart | 3D Try-On & Home Eye Test</title>
+    <title>Lenskart | 3D Try-On & Home Eye Test Prototype</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Configure Tailwind theme with brand colors -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: '#000042',
+                        teal: '#00bca5',
+                        tealHover: '#009684'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* CSS STYLES */
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
-
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        body { background-color: #f8f9fa; color: #333; }
-        header { background-color: #ffffff; padding: 20px 50px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 6px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100; }
-        .logo { font-size: 28px; font-weight: 700; color: #000042; text-decoration: none; }
-        .logo span { color: #00bca5; }
-        nav a { text-decoration: none; color: #333; margin-left: 20px; font-weight: 600; }
-        .hero { background: linear-gradient(135deg, #000042, #001f5c); color: white; text-align: center; padding: 100px 20px; }
-        .hero h1 { font-size: 48px; margin-bottom: 20px; }
-        .hero p { font-size: 18px; margin-bottom: 40px; color: #d1d5db; }
-        
-        /* Updated Buttons */
-        .btn-primary { background-color: #00bca5; color: white; padding: 15px 30px; border-radius: 30px; font-size: 18px; font-weight: 600; text-decoration: none; border: none; cursor: pointer; transition: 0.3s; display: inline-block; }
-        .btn-primary:hover { background-color: #009684; transform: scale(1.05); }
-        
-        .try-on-section { display: flex; align-items: center; justify-content: center; padding: 80px 50px; background-color: #ffffff; gap: 50px; flex-wrap: wrap; }
-        .try-on-text { max-width: 500px; }
-        .try-on-text h2 { font-size: 36px; color: #000042; margin-bottom: 20px; }
-        .try-on-text p { font-size: 16px; color: #666; margin-bottom: 30px; line-height: 1.6; }
-        .ar-graphic { font-size: 120px; background: #f0fdfa; padding: 40px; border-radius: 50%; box-shadow: 0 10px 20px rgba(0, 188, 165, 0.2); animation: float 3s ease-in-out infinite; transition: 0.3s; }
-        
-        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-15px); } 100% { transform: translateY(0px); } }
-        footer { background-color: #000042; color: white; text-align: center; padding: 20px; margin-top: 40px; }
-
-        /* Toast Notification Style (The Pop-up) */
-        #toast { visibility: hidden; min-width: 300px; background-color: #00bca5; color: #fff; text-align: center; border-radius: 8px; padding: 16px; position: fixed; z-index: 1000; bottom: 30px; left: 50%; transform: translateX(-50%); box-shadow: 0 4px 15px rgba(0,0,0,0.2); font-weight: 600; font-size: 16px;}
-        #toast.show { visibility: visible; animation: fadein 0.5s, fadeout 0.5s 2.5s; }
-        @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
-        @keyframes fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
+        body { font-family: 'Inter', sans-serif; }
+        .float-anim {
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
     </style>
 </head>
-<body>
+<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
 
-    <header>
-        <a href="#" class="logo">Lenskart<span>.</span></a>
-        <nav>
-            <a href="#">Eyeglasses</a>
-            <a href="#">Sunglasses</a>
-            <a href="#">Contact Lenses</a>
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-40 px-6 py-4 flex justify-between items-center">
+        <a href="#" class="text-2xl font-bold text-navy">Lenskart<span class="text-teal">.</span></a>
+        <nav class="hidden md:flex space-x-6 font-semibold text-gray-600">
+            <a href="#" class="hover:text-teal transition-colors">Eyeglasses</a>
+            <a href="#" class="hover:text-teal transition-colors">Sunglasses</a>
+            <a href="#" class="hover:text-teal transition-colors">Contact Lenses</a>
         </nav>
     </header>
 
-    <section class="hero">
-        <h1>See The World Clearly, From Your Couch</h1>
-        <p>Get your eyes checked by certified professionals in the comfort of your own home.</p>
-        <!-- Button triggers JS function -->
-        <button onclick="bookTest()" class="btn-primary">🛵 Book Home Eye Test</button>
-    </section>
-
-    <section class="try-on-section">
-        <div id="ar-glasses" class="ar-graphic">🕶️</div>
-        <div class="try-on-text">
-            <h2>Experience Virtual 3D Try-On</h2>
-            <p>Not sure how a frame will look on your face? Use our advanced AI-powered 3D Try-On feature right from your smartphone or laptop. Try thousands of frames instantly and find your perfect fit without stepping outside.</p>
-            <!-- Button triggers JS function -->
-            <button onclick="startAR()" class="btn-primary">📱 Start 3D Try-On</button>
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-br from-navy to-blue-900 text-white text-center py-24 px-6 relative overflow-hidden">
+        <div class="relative z-10 max-w-2xl mx-auto">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">See The World Clearly, From Your Couch</h1>
+            <p class="text-lg md:text-xl text-gray-300 mb-10">Get your eyes checked by certified professionals in the comfort of your own home.</p>
+            <button id="openModalBtn" class="bg-teal hover:bg-tealHover text-white px-8 py-4 rounded-full font-bold text-lg shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
+                🛵 Book Home Eye Test
+            </button>
         </div>
     </section>
 
-    <footer>
-        <p>&copy; 2026 Lenskart Prototype - Built for KPI Audit Assessment</p>
+    <!-- 3D Try-On Section -->
+    <section class="py-20 px-6 max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-12 flex-grow">
+        <div class="flex-shrink-0 bg-teal/10 rounded-full p-12 shadow-[0_10px_40px_rgba(0,188,165,0.2)] float-anim">
+            <span id="arEmoji" class="text-8xl md:text-9xl transition-all duration-300">🕶️</span>
+        </div>
+        <div class="max-w-lg text-center md:text-left">
+            <h2 class="text-3xl font-bold text-navy mb-4">Experience Virtual 3D Try-On</h2>
+            <p class="text-gray-600 mb-8 leading-relaxed">
+                Not sure how a frame will look on your face? Use our advanced AI-powered 3D Try-On feature right from your smartphone or laptop. Try thousands of frames instantly and find your perfect fit without stepping outside.
+            </p>
+            <button id="tryOnBtn" class="bg-navy hover:bg-blue-900 text-white px-8 py-3 rounded-full font-bold shadow-lg transition-all transform hover:-translate-y-1">
+                📱 Start 3D Try-On
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-navy text-white text-center py-6 mt-auto">
+        <p class="text-sm font-light text-gray-400">Prototype built by Manya Jaiswal - Christ University HR KPI Audit</p>
     </footer>
 
-    <!-- The invisible box that JS turns into a pop-up -->
-    <div id="toast">Message goes here</div>
+    <!-- Booking Modal (Hidden by default) -->
+    <div id="bookingModal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center backdrop-blur-sm px-4">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden transform transition-all">
+            <div class="bg-navy p-6 flex justify-between items-center text-white">
+                <h3 class="text-xl font-bold">Book Home Eye Test</h3>
+                <button id="closeModalBtn" class="text-white hover:text-gray-300 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <form id="bookingForm" class="p-6 space-y-4">
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1" for="name">Full Name</label>
+                    <input type="text" id="nameInput" placeholder="Manya" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal focus:border-teal outline-none transition-all">
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1" for="phone">Phone Number</label>
+                    <input type="tel" id="phoneInput" placeholder="Enter mobile number" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal focus:border-teal outline-none transition-all">
+                </div>
+                <button type="submit" id="submitBtn" class="w-full bg-teal hover:bg-tealHover text-white font-bold py-3 rounded-lg mt-4 transition-colors">
+                    Confirm Booking
+                </button>
+                <p class="text-xs text-center text-gray-500 mt-2">Data will be saved securely to the database.</p>
+            </form>
+        </div>
+    </div>
 
-    <!-- JAVASCRIPT SECTION (Where the magic happens) -->
-    <script>
-        // Function to make the pop-up appear and disappear
-        function showToast(message) {
-            var toast = document.getElementById("toast");
-            toast.innerText = message;
-            toast.className = "show";
-            setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 3000);
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-[-100px] left-1/2 transform -translate-x-1/2 px-6 py-3 rounded-lg shadow-lg text-white font-semibold transition-all duration-300 z-50 flex items-center gap-2">
+        <span id="toastIcon">✅</span>
+        <span id="toastMessage">Notification message</span>
+    </div>
+
+    <!-- Application Logic & Firebase Backend Connection -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Setup Firebase context from environment variables
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'lenskart-prototype';
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : null;
+        
+        let db, auth, userId;
+
+        // Initialize Firebase if config is available
+        if (firebaseConfig) {
+            try {
+                const app = initializeApp(firebaseConfig);
+                db = getFirestore(app);
+                auth = getAuth(app);
+
+                const authenticate = async () => {
+                    try {
+                        if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                            await signInWithCustomToken(auth, __initial_auth_token);
+                        } else {
+                            await signInAnonymously(auth);
+                        }
+                        userId = auth.currentUser?.uid;
+                        console.log("Database connected. User ID:", userId);
+                    } catch (error) {
+                        console.error("Authentication failed:", error);
+                    }
+                };
+                authenticate();
+            } catch (error) {
+                console.error("Firebase initialization error:", error);
+            }
+        } else {
+            console.warn("Firebase config not found. App will run in UI-only mode.");
         }
 
-        // What happens when you click Book Eye Test
-        function bookTest() {
-            showToast("✅ Request Received! Optometrist assigned and will contact you shortly.");
+        // --- UI Interactions & Logic ---
+
+        const modal = document.getElementById('bookingModal');
+        const form = document.getElementById('bookingForm');
+        const toast = document.getElementById('toast');
+        const toastMessage = document.getElementById('toastMessage');
+        const toastIcon = document.getElementById('toastIcon');
+        const arEmoji = document.getElementById('arEmoji');
+
+        // Show Toast Function
+        function showToast(message, type = 'success') {
+            toastMessage.textContent = message;
+            
+            if (type === 'success') {
+                toast.classList.remove('bg-red-500');
+                toast.classList.add('bg-green-500');
+                toastIcon.textContent = '✅';
+            } else if (type === 'error') {
+                toast.classList.remove('bg-green-500');
+                toast.classList.add('bg-red-500');
+                toastIcon.textContent = '❌';
+            }
+
+            // Slide up
+            toast.style.bottom = '30px';
+            
+            // Hide after 3.5 seconds
+            setTimeout(() => {
+                toast.style.bottom = '-100px';
+            }, 3500);
         }
 
-        // What happens when you click 3D Try-On
-        function startAR() {
-            document.getElementById("ar-glasses").innerText = "😎";
-            showToast("📷 Requesting camera access for Virtual Try-On...");
-        }
+        // Modal Controls
+        document.getElementById('openModalBtn').addEventListener('click', () => {
+            modal.classList.remove('hidden');
+        });
+
+        document.getElementById('closeModalBtn').addEventListener('click', () => {
+            modal.classList.add('hidden');
+        });
+
+        // Close modal on background click
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.add('hidden');
+            }
+        });
+
+        // Handle Form Submission and Save to Database
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const name = document.getElementById('nameInput').value;
+            const phone = document.getElementById('phoneInput').value;
+
+            // Change button state
+            const originalBtnText = submitBtn.innerText;
+            submitBtn.innerText = 'Saving securely...';
+            submitBtn.disabled = true;
+            submitBtn.classList.add('opacity-70');
+
+            try {
+                if (db && userId) {
+                    // RULE 1 & 3: Save to strict user-specific path after authentication
+                    const appointmentsRef = collection(db, 'artifacts', appId, 'users', userId, 'appointments');
+                    await addDoc(appointmentsRef, {
+                        name: name,
+                        phone: phone,
+                        status: 'pending_assignment',
+                        createdAt: Date.now()
+                    });
+                    
+                    showToast(`Appointment saved in database for ${name}!`, 'success');
+                } else {
+                    // Fallback if database config isn't provided by environment
+                    setTimeout(() => {
+                        showToast(`UI Mode: Booking received for ${name}!`, 'success');
+                    }, 800);
+                }
+                
+                // Reset and close
+                setTimeout(() => {
+                    form.reset();
+                    modal.classList.add('hidden');
+                }, 1000);
+
+            } catch (error) {
+                console.error("Database save error:", error);
+                showToast("Error saving to database.", "error");
+            } finally {
+                submitBtn.innerText = originalBtnText;
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('opacity-70');
+            }
+        });
+
+        // 3D Try-On Interaction
+        document.getElementById('tryOnBtn').addEventListener('click', () => {
+            arEmoji.textContent = '😎';
+            showToast('3D Camera initialized successfully!', 'success');
+            
+            // Reset emoji after a few seconds
+            setTimeout(() => {
+                arEmoji.textContent = '🕶️';
+            }, 4000);
+        });
+
     </script>
-
 </body>
 </html>
